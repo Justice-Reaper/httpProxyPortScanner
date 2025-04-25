@@ -1,18 +1,18 @@
 # HttpProxyPortScanner
-Este script en Bash permite escanear puertos abiertos en un objetivo específico utilizando un proxy HTTP
+This Bash script allows scanning for open ports on a specific target using an HTTP proxy
 
-# Características
-- Solicita al usuario el proxy, el objetivo y el número de puertos a escanear
-- Los puertos abiertos se guardan en un archivo llamado openPortsHttpProxy.txt
-- Los puertos abiertos se copian automáticamente en la clipboard
+# Features
+- Prompts the user for proxy, target, and number of ports to scan
+- Open ports are saved in a file named openPortsHttpProxy.txt
+- Open ports are automatically copied to the clipboard
 
-# Dependencias
-- Es necesarios instalar las siguientes dependenciales
+# Dependencies
+- The following dependencies must be installed
 ```
 sudo apt install -y git curl sed xclip gawk coreutils              
 ```
 
-# Uso
+# Usage
 ```
 git clone https://github.com/Justice-Reaper/HttpProxyPortScanner.git
 cd HttpProxyPortScanner
@@ -20,7 +20,7 @@ chmod +x HttpProxyPortScanner.sh
 ./HttpProxyPortScanner.sh
 ```
 
-# Ejemplo
+# Example
 ```
 ./HttpProxyPortScanner.sh
 
@@ -31,17 +31,17 @@ chmod +x HttpProxyPortScanner.sh
 ██║  ██║   ██║      ██║   ██║         ██║     ██║  ██║╚██████╔╝██╔╝ ██╗   ██║       ██║     ╚██████╔╝██║  ██║   ██║       ███████║╚██████╗██║  ██║██║ ╚████║██║ ╚████║███████╗██║  ██║
 ╚═╝  ╚═╝   ╚═╝      ╚═╝   ╚═╝         ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝
 
-Introduce el proxy (ejemplo: http://usuario:contraseña@ip:puerto - http://usuario:contraseña@dominio:puerto - http://ip:puerto - http://dominio:puerto)
+Enter the proxy (example: http://user:password@ip:port - http://user:password@domain:port - http://ip:port - http://domain:port):
 Proxy: http://lance.friedman:o>WJ5-jD<5^m3@10.129.181.242:3128
 
-Introduce el objetivo (ejemplo: http://ip - http://dominio - ip - dominio):
-Objetivo: 127.0.0.1
+Enter the target (example: http://ip - http://domain - ip - domain):
+Target: 127.0.0.1
 
-Introduce hasta que puerto deseas escanear (ejemplo: 65535):
-Puertos: 80
+Enter up to which port you want to scan (example: 65535):
+Port: 80
         [*] Port 22 - OPEN
         [*] Port 80 - OPEN
 
-[+] Escaneo completado, los puertos abiertos han sido guardados en openPortsHttpProxy.txt
-[+] Los puertos han sido copiados en la clipboard
+[+] Scan completed, open ports have been saved to openPortsHttpProxy.txt
+[+] Ports have been copied to clipboard
 ```
