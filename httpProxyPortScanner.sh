@@ -15,16 +15,16 @@ YELLOW="\e[33m"
 ENDCOLOR="\e[0m"
 
 # Prompt user to enter proxy
-echo -e "${YELLOW}Enter the proxy (example: http://user:password@ip:port - http://user:password@domain:port - http://ip:port - http://domain:port)${ENDCOLOR}"
+echo -e "${YELLOW}Enter the proxy (example: http://user:password@ip:port - http://user:password@domain:port - http://ip:port - http://domain:port):${ENDCOLOR}"
 read -e -p "Proxy: " proxy
 
 # Prompt user to enter target
 echo -e "\n${YELLOW}Enter the target (example: http://ip - http://domain - ip - domain):${ENDCOLOR}"
 read -e -p "Target: " target
 
-# Prompt user to enter ports
+# Prompt user to enter port
 echo -e "\n${YELLOW}Enter up to which port you want to scan (example: 65535):${ENDCOLOR}"
-read -e -p "Ports: " ports
+read -e -p "Port: " port
 
 # File to store open ports
 output_file="openPortsHttpProxy.txt"
@@ -33,7 +33,7 @@ output_file="openPortsHttpProxy.txt"
 rm "$output_file" &>/dev/null
 
 # Scan ports from 1 to specified port and store open ports in a file
-for ((i=1; i<=ports; i++)); do
+for ((i=1; i<=port; i++)); do
   status_code=$(curl -o /dev/null -s -w "%{http_code}" --proxy "$proxy" "$target:$i")
   if [ "$status_code" -eq 200 ]; then
     echo -e "\t${GREEN}[*] Port $i - OPEN${ENDCOLOR}"
