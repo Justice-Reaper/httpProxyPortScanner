@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Print title
 echo -e "\n██╗  ██╗████████╗████████╗██████╗     ██████╗ ██████╗  ██████╗ ██╗  ██╗██╗   ██╗    ██████╗  ██████╗ ██████╗ ████████╗    ███████╗ ██████╗ █████╗ ███╗   ██╗███╗   ██╗███████╗██████╗ 
 ██║  ██║╚══██╔══╝╚══██╔══╝██╔══██╗    ██╔══██╗██╔══██╗██╔═══██╗╚██╗██╔╝╚██╗ ██╔╝    ██╔══██╗██╔═══██╗██╔══██╗╚══██╔══╝    ██╔════╝██╔════╝██╔══██╗████╗  ██║████╗  ██║██╔════╝██╔══██╗
 ███████║   ██║      ██║   ██████╔╝    ██████╔╝██████╔╝██║   ██║ ╚███╔╝  ╚████╔╝     ██████╔╝██║   ██║██████╔╝   ██║       ███████╗██║     ███████║██╔██╗ ██║██╔██╗ ██║█████╗  ██████╔╝
@@ -8,41 +7,33 @@ echo -e "\n██╗  ██╗████████╗███████�
 ██║  ██║   ██║      ██║   ██║         ██║     ██║  ██║╚██████╔╝██╔╝ ██╗   ██║       ██║     ╚██████╔╝██║  ██║   ██║       ███████║╚██████╗██║  ██║██║ ╚████║██║ ╚████║███████╗██║  ██║
 ╚═╝  ╚═╝   ╚═╝      ╚═╝   ╚═╝         ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝\n"
 
-# Colors
-RED="\e[31m"
-GREEN="\e[32m"
-YELLOW="\e[33m"
-ENDCOLOR="\e[0m"
+green="\e[32m"
+yellow="\e[33m"
+end_color="\e[0m"
 
-# Prompt user to enter proxy
-echo -e "${YELLOW}Enter the proxy (example: http://user:password@ip:port - http://user:password@domain:port - http://ip:port - http://domain:port):${ENDCOLOR}"
+echo -e "${yellow}Enter the proxy (example: http://user:password@ip:port - http://user:password@domain:port - http://ip:port - http://domain:port):${end_color}"
 read -e -p "Proxy: " proxy
 
-# Prompt user to enter target
-echo -e "\n${YELLOW}Enter the target (example: http://ip - http://domain - ip - domain):${ENDCOLOR}"
+echo -e "\n${yellow}Enter the target (example: http://ip - http://domain - ip - domain):${end_color}"
 read -e -p "Target: " target
 
-# Prompt user to enter port
-echo -e "\n${YELLOW}Enter up to which port you want to scan (example: 65535):${ENDCOLOR}"
+echo -e "\n${yellow}Enter up to which port you want to scan (example: 65535):${end_color}"
 read -e -p "Port: " port
 
-# File to store open ports
 output_file="openPortsHttpProxy.txt"
 
-# Clear the file if it already exists
 rm "$output_file" &>/dev/null
 
-# Scan ports from 1 to specified port and store open ports in a file
 for ((i=1; i<=port; i++)); do
   status_code=$(curl -o /dev/null -s -w "%{http_code}" --proxy "$proxy" "$target:$i")
   if [ "$status_code" -eq 200 ]; then
-    echo -e "\t${GREEN}[*] Port $i - OPEN${ENDCOLOR}"
+    echo -e "\t${green}[*] Port $i - OPEN${end_color}"
     echo "Port $i - OPEN" >> "$output_file"
   fi
 done
-echo -e "\n${GREEN}[+] Scan completed, open ports have been saved to $output_file${ENDCOLOR}"
+echo -e "\n${green}[+] Scan completed, open ports have been saved to $output_file${end_color}"
 
 # Copy open ports to clipboard
 cat "$output_file" | awk '/Port/ {print $2}' | tr '\n' ',' | sed 's/,$//;s/,*$//g' | xclip -sel clip
-echo -e "${GREEN}[+] Ports have been copied to clipboard${ENDCOLOR}"
-echo -e "${GREEN}[+] Los puertos han sido copiados en la clipboard${ENDCOLOR}"
+echo -e "${green}[+] Ports have been copied to clipboard${end_color}"
+echo -e "${green}[+] Los puertos han sido copiados en la clipboard${end_color}"
