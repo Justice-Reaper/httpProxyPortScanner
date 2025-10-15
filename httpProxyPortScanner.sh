@@ -33,7 +33,6 @@ for ((i=1; i<=port; i++)); do
 done
 echo -e "\n${green}[+] Scan completed, open ports have been saved to $output_file${end_color}"
 
-# Copy open ports to clipboard
 cat "$output_file" | awk '/Port/ {print $2}' | tr '\n' ',' | sed 's/,$//;s/,*$//g' | xclip -sel clip
 echo -e "${green}[+] Ports have been copied to clipboard${end_color}"
 echo -e "${green}[+] Los puertos han sido copiados en la clipboard${end_color}"
