@@ -12,14 +12,6 @@ This Bash script allows scanning for open ports on a specific target using an HT
 sudo apt install -y git curl sed xclip gawk coreutils              
 ```
 
-# Usage
-```
-git clone https://github.com/Justice-Reaper/HttpProxyPortScanner.git
-cd HttpProxyPortScanner
-chmod +x HttpProxyPortScanner.sh
-./HttpProxyPortScanner.sh
-```
-
 # Example
 ```
 ./HttpProxyPortScanner.sh
